@@ -442,19 +442,19 @@ class SteamUser(SteamObject):
     @cached_property(ttl=INFINITE)
     def is_number_of_vac_bans(self):
         """
-        :rtype: bool
+        :rtype: int
         """
         return self._bans.NumberOfVACBans
     @cached_property(ttl=INFINITE)
     def is_days_since_last_ban(self):
         """
-        :rtype: bool
+        :rtype: int
         """
         return self._bans.DaysSinceLastBan
     @cached_property(ttl=INFINITE)
     def is_number_of_game_bans(self):
         """
-        :rtype: bool
+        :rtype: int
         """
         return self._bans.NumberOfGameBans
     @cached_property(ttl=INFINITE)
