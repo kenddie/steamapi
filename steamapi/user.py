@@ -198,7 +198,10 @@ class SteamUser(SteamObject):
         """
         :rtype: str
         """
-        return self._summary.realname
+        if "realname" in self._summary:
+            return self._summary.realname
+        else:
+            return None
 
     @cached_property(ttl=INFINITE)
     def country_code(self):
@@ -424,15 +427,40 @@ class SteamUser(SteamObject):
         return self._convert_games_list(response.games, self._id)
 
     @cached_property(ttl=INFINITE)
-    def is_vac_banned(self):
+    def vac_banned(self):
         """
         :rtype: bool
         """
         return self._bans.VACBanned
 
     @cached_property(ttl=INFINITE)
-    def is_community_banned(self):
+    def community_banned(self):
         """
         :rtype: bool
         """
         return self._bans.CommunityBanned
+    @cached_property(ttl=INFINITE)
+    def number_of_vac_bans(self):
+        """
+        :rtype: int
+        """
+        return self._bans.NumberOfVACBans
+    @cached_property(ttl=INFINITE)
+    def days_since_last_ban(self):
+        """
+        :rtype: int
+        """
+        return self._bans.DaysSinceLastBan
+    @cached_property(ttl=INFINITE)
+    def number_of_game_bans(self):
+        """
+        :rtype: int
+        """
+        return self._bans.NumberOfGameBans
+    @cached_property(ttl=INFINITE)
+    def economy_ban(self):
+        """
+        :rtype: str
+        """
+        return self._bans.EconomyBan
+
